@@ -54,7 +54,7 @@ export default class TowerBuilder extends Component{
             <h4>Tower Build</h4>
             <input onChange={e=>this.handleInput(e)} className='inputLine' placeholder="Insert number of floors"/>
             <button onClick={()=>this.handleOnClick()} className="confirmationButton">Build</button>
-    <span className='towerBox'>{this.state.nFloors.map(item=><div>{item}</div>)}</span>
+    <span className='towerBox'>{this.state.nFloors.map(item=><div key={item}>{item}</div>)}</span>
         </div>
     )
     }
