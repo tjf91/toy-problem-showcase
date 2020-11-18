@@ -4,9 +4,11 @@ export default class TowerBuilder extends Component{
     constructor() {
         super();
         this.state={
-            userInput:0,
+            userInput:'',
             nFloors:[],
         }
+        this.handleInput=this.handleInput.bind(this)
+        this.handleOnClick=this.handleOnClick.bind(this)
     }
     handleInput(e){
         this.setState({
@@ -29,13 +31,11 @@ export default class TowerBuilder extends Component{
 
     handleOnClick(){
         const nFloors=this.towerBuilder(this.state.userInput)
-        console.log(nFloors)
-        this.setState({
-            
-            nFloors:[...nFloors],
-            userInput:'',
-        })
         
+        this.setState({            
+            nFloors,                      
+        })
+        console.log(this.state)
         
     }
 
@@ -47,14 +47,16 @@ export default class TowerBuilder extends Component{
 
       render(){
 
-
+        
 
     return (
         <div className='puzzleBox'>
             <h4>Tower Build</h4>
-            <input onChange={e=>this.handleInput(e)} className='inputLine' placeholder="Insert number of floors"/>
-            <button onClick={()=>this.handleOnClick()} className="confirmationButton">Build</button>
-    <span className='towerBox'>{this.state.nFloors.map(item=><div key={item}>{item}</div>)}</span>
+            <input onChange={this.handleInput} className='inputLine' placeholder="Insert number of floors"/>
+            <button onClick={this.handleOnClick} className="confirmationButton">Build</button>
+    <span className='towerBox'>{this.state.nFloors.map((item,i)=><div key={item}>{item}</div>)}
+    
+    </span>
         </div>
     )
     }
